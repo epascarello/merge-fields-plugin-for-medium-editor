@@ -1,0 +1,96 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Test Plugin MediumEditor</title>
+  <link rel="stylesheet" href="css/medium-editor.css" />
+  <link rel="stylesheet" href="css/mergefields.css" />
+  
+</head>
+
+<body>
+
+    <h1>MediumEditor Plug-in Test</h1>
+    <p>Type any of the following into the editor</p>
+    <ul>
+        <li>Mail Merge
+            <ul>
+                <li>[company_name]</li>
+                <li>[first_name]</li>
+                <li>[last_name]</li>
+            </ul>
+        </li><!--
+        <li>Smiles
+            <ul>
+                <li>:)</li>
+                <li>:(</li>
+                <li>;)</li>
+                <li>:star:</li>
+            </ul>        
+        </li>
+        <li>Any email addy</li>-->
+    </ul>
+    <hr/>
+    <div class="editor one">
+        <p>Type it here! </p>
+    </div>
+
+  <script src="js/medium-editor.min.js"></script>
+  <script src="js/mergefields.js"></script>
+  <script>     
+ 
+	(function(){
+
+        var mergeOptions = {
+            startPattern : /\[([a-z][a-z_]*)/i,
+            fullPattern : /\[([a-z][a-z_]*)\]/i,
+            replacements : ["company_name", "comapny_address", "first_name", "full_name", "last_name"],
+            replacementTemplate : '<span class="data-island" data-property="$1"></span>\u200b'        
+        };
+        
+        /*
+        var emot =  {
+                startPattern : null,
+                fullPattern : /(:\)|:\(|;\)|:star:)/i,
+                replacements: null, 
+                replacementTemplate: function (str) {
+                    var uni = {
+                        ":)" :  "\u263A",
+                        ":(" :  "\u2639",
+                        ";)" : "\uD83D\uDE09",
+                        ":star:" : "\u2606"                        
+                    }
+                   
+                    return '<span class="data-island" data-property="' + uni[str] + '"></span>\u200b'
+                }
+            };   
+
+        var emailOpt = {
+            startPattern : null,
+            fullPattern : /([a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\b/,
+            replacements : null,
+            replacementTemplate: '<a href="mailto:$1" class="data-island" data-property="$1"></a>\u200b'
+        };
+        
+        var urlOpt = {
+            fullPattern : /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/i,
+            replacementTemplate: '<a href="mailto:$1">$1</a>\u200b'
+        };
+        
+        */
+        
+        var e = new MediumEditor('.editor', {
+            buttons: ['bold', 'italic', 'underline'],
+            extensions: {            
+                'data-island': new IslandBlock(mergeOptions)
+            }
+        });  
+		
+	}());
+
+  </script>
+    
+</body>
+</html>

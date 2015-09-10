@@ -1,0 +1,45 @@
+.data-island {
+    text-decoration:none;
+    outline: 1px dashed #000;
+    background-color: #CCC;
+}
+
+.data-island::before {
+    content: attr(data-property);
+} 
+
+div.data-island-menu {
+    position: absolute;
+    top:0px;
+    left:0px;
+    display: none;
+}
+
+.data-island-menu ul {
+    width: 9em;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    border-top: 1px #000 solid;
+    border-left: 1px #000 solid;
+    border-right: 1px #000 solid;
+    list-style-type: none;
+}
+
+.data-island-menu ul li a {
+    display: block;
+    cursor:pointer;
+    background-color: #fff;
+    border-bottom: 1px #000 solid;
+    text-align: center;
+    text-decoration: none;
+    color: #000;
+}
+
+.data-island-menu ul li a:hover { 
+    background-color: orange;
+}  
+
+.data-island-menu ul li.active a { 
+    background-color: yellow;
+}
